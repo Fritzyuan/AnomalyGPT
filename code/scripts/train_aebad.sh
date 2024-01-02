@@ -1,7 +1,5 @@
-#!/bin/bash
-
-deepspeed --include localhost:0 --master_port 29500 train_mvtec.py \
-    --include localhost:0,1 --master_port 28400 train_mvtec.py \
+deepspeed \
+    --include localhost:0,1 --master_port 29500 train_mvtec.py \
     --model openllama_peft \
     --stage 1\
     --imagebind_ckpt_path ../pretrained_ckpt/imagebind_ckpt/imagebind_huge.pth\
@@ -10,7 +8,7 @@ deepspeed --include localhost:0 --master_port 29500 train_mvtec.py \
     --max_tgt_len 1024\
     --data_path  ../data/pandagpt4_visual_instruction_data.json\
     --image_root_path ../data/images/\
-    --save_path  ./ckpt/test/train_aebad/\
-    --log_path ./ckpt/test/train_aebad/log_rest/
+    --save_path  ./ckpt/train_aeb/\
+    --log_path ./ckpt/test/train_aeb/log_rest/
     # --save_path  ./ckpt/train_mvtec/\
     # --log_path ./ckpt/train_mvtec/log_rest/

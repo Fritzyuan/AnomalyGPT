@@ -1,5 +1,7 @@
 from header import *
 
+import pickle
+
 class DeepSpeedAgent:
     
     def __init__(self, model, args):
@@ -67,8 +69,15 @@ class DeepSpeedAgent:
         checkpoint = OrderedDict()
         for k, v in self.ds_engine.module.named_parameters():
             if v.requires_grad:
-                print(k)
-                checkpoint[k] = v
+                try:
+                    pickle.dumps(v)
+                    checkpoint[k] = v
+                    print(k)
+                except TypeError:
+                    print(f"Skip {k} because it can't be pickled.")
+            # if v.requires_grad:
+            #     print(k)
+            #     checkpoint[k] = v
         torch.save(checkpoint, f'{path}/pytorch_model.pt')
         # save tokenizer
         self.model.llama_tokenizer.save_pretrained(path)
