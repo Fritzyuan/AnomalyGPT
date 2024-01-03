@@ -55,7 +55,8 @@ def load_mvtec_dataset(args):
     data = globals()[dataset_name](data_path, tokenizer, args['max_length']) #SupervisedDataset
     '''
     # data = MVtecDataset('../data/mvtec_anomaly_detection')
-    data = MVtecDataset('../data/AeBAD_mvt_structural')
+    # data = MVtecDataset('../data/AeBAD_mvt_structural')
+    data = MVtecDataset(args['dataset_path'])
 
     sampler = torch.utils.data.RandomSampler(data)
     world_size = torch.distributed.get_world_size()
