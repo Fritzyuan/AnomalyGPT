@@ -72,7 +72,7 @@ describles = {}
 # describles['zipper'] = "This is a photo of a zipper for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
 # describles['aero-engine_blade'] = "This is a photo of aero engine blade for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
 # describles['ball_screw'] = "This is a photo of ball screw for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
-describles['pcb'] = "This is a photo of pcb for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part." 
+describles['pku_pcb'] = "This is a photo of pcb for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part." 
 # describles['deep_pcb'] = "This is a photo of deep pcb for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
 
 

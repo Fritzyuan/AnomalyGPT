@@ -14,7 +14,7 @@ from transformers import LlamaTokenizer, LlamaForCausalLM, LlamaConfig
 import torch
 from torch.nn.utils import rnn
 
-CLASS_NAMES = ['bottle', 'cable', 'capsule', 'carpet', 'grid', 'hazelnut', 'leather', 'metal nut', 'pill', 'screw', 'tile', 'toothbrush', 'transistor', 'wood', 'zipper', 'object', 'aero-engine blade', 'ball screw', 'deep pcb', 
+CLASS_NAMES = ['bottle', 'cable', 'capsule', 'carpet', 'grid', 'hazelnut', 'leather', 'metal nut', 'pill', 'screw', 'tile', 'toothbrush', 'transistor', 'wood', 'zipper', 'object', 'aero-engine blade', 'ball screw', 'deep pcb', 'pku pcb',
                'candle', 'cashew', 'chewinggum', 'fryum', 'macaroni', 'pcb', 'pipe fryum']
 
 prompt_normal = ['{}', 'flawless {}', 'perfect {}', 'unblemished {}', '{} without flaw', '{} without defect', '{} without damage']
@@ -32,7 +32,7 @@ prompt_templates = ['a photo of a {}.', 'a photo of the {}.']
 #                         'a photo of the {} for anomaly detection.', 'a photo of a {} for anomaly detection.'
 #                         ]
 objs = ['bottle', 'cable', 'capsule', 'carpet', 'grid', 'hazelnut', 'leather', 'metal nut', 'pill', 'screw', 'tile', 'toothbrush', 'transistor', 'wood', 'zipper', 'object', 
-        'aero-engine blade', 'ball screw', 'deep pcb',
+        'aero-engine blade', 'ball screw', 'deep pcb', 'pku pcb', 
         'candle', 'cashew', 'chewinggum', 'fryum', 'macaroni', 'pcb', 'pipe fryum', 'macaroni1', 'macaroni2','pcb1', 'pcb2', 'pcb3', 'pcb4', 'capsules']
 
 prompt_sentences = {}
