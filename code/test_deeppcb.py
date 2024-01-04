@@ -56,7 +56,7 @@ describles = {}
 # describles['wood'] = "This is a photo of wood for anomaly detection, which should be brown with patterns, without any damage, flaw, defect, scratch, hole or broken part."
 # describles['zipper'] = "This is a photo of a zipper for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
 # describles['aero-engine_blade'] = "This is a photo of aero engine blade for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
-describles['ball_screw'] = "This is a photo of ball screw for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
+describles['deep_pcb'] = "This is a photo of pcb for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
 
 FEW_SHOT = command_args.few_shot 
 
@@ -132,7 +132,7 @@ mask_transform = transforms.Compose([
                             ])
 
 # CLASS_NAMES = ['bottle', 'cable', 'capsule', 'carpet', 'grid','hazelnut', 'leather', 'metal_nut', 'pill', 'screw','tile', 'toothbrush', 'transistor', 'wood', 'zipper']
-CLASS_NAMES = ['ball_screw']
+CLASS_NAMES = ['deep_pcb']
 
 precision = []
 log_path = command_args.output_path + "/test_result.txt"
