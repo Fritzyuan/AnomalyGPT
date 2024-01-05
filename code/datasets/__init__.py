@@ -86,7 +86,7 @@ def load_visa_dataset(args):
     data_path = args["data_path"]
     data = globals()[dataset_name](data_path, tokenizer, args['max_length']) #SupervisedDataset
     '''
-    data = VisaDataset('../data/VisA')
+    data = VisaDataset(args['dataset_path'])
 
     sampler = torch.utils.data.RandomSampler(data)
     world_size = torch.distributed.get_world_size()
@@ -146,7 +146,7 @@ def load_aeb_dataset(args):
     data_path = args["data_path"]
     data = globals()[dataset_name](data_path, tokenizer, args['max_length']) #SupervisedDataset
     '''
-    data = AeBAD('../data/AeBAD_mvt_structural')
+    data = AeBAD(args['dataset_path'])
 
     sampler = torch.utils.data.RandomSampler(data)
     world_size = torch.distributed.get_world_size()
@@ -175,7 +175,7 @@ def load_bsd_dataset(args):
     data_path = args["data_path"]
     data = globals()[dataset_name](data_path, tokenizer, args['max_length']) #SupervisedDataset
     '''
-    data = BSD('../data/BSData_mvt_structural')
+    data = BSD(args['dataset_path'])
 
     sampler = torch.utils.data.RandomSampler(data)
     world_size = torch.distributed.get_world_size()
@@ -204,7 +204,7 @@ def load_deeppcb_dataset(args):
     data_path = args["data_path"]
     data = globals()[dataset_name](data_path, tokenizer, args['max_length']) #SupervisedDataset
     '''
-    data = DeepPCB('../data/DeepPCB_mvt_structural')
+    data = DeepPCB(args['dataset_path'])
 
     sampler = torch.utils.data.RandomSampler(data)
     world_size = torch.distributed.get_world_size()
@@ -233,7 +233,7 @@ def load_pkupcb_dataset(args):
     data_path = args["data_path"]
     data = globals()[dataset_name](data_path, tokenizer, args['max_length']) #SupervisedDataset
     '''
-    data = PKUPCB('../data/mini_pku_pcb_mvt_structural')
+    data = PKUPCB(args['dataset_path'])
 
     sampler = torch.utils.data.RandomSampler(data)
     world_size = torch.distributed.get_world_size()

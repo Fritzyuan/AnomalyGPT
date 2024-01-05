@@ -19,7 +19,7 @@ def parser_args():
     parser.add_argument('--image_root_path', type=str) # the maximum sequence length
     # dataset path config
     parser.add_argument('--dataset_path', type=str)
-    
+
     return parser.parse_args()
 
 def initialize_distributed(args):
@@ -71,7 +71,7 @@ def main(**args):
             filemode='w'
         )
     
-    train_data, train_iter, sampler = load_pkupcb_dataset(args)
+    train_data, train_iter, sampler = load_aeb_dataset(args)
     train_data_sft, train_iter_sft, sampler = load_sft_dataset(args)
 
     length = args['epochs'] * len(train_data) // args['world_size'] // dschf.config['train_micro_batch_size_per_gpu']

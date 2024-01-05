@@ -99,7 +99,7 @@ class BSD(Dataset):
         for root, dirs, files in os.walk(root_dir):
             for file in files:
                 file_path = os.path.join(root, file)
-                if "train" in file_path and "good" in file_path and 'png' in file:
+                if "train" in file_path and "good" in file_path and ('png' in file or 'jpg' in file):
                     self.paths.append(file_path)
                     self.x.append(self.transform(Image.open(file_path).convert('RGB')))
 
@@ -113,9 +113,9 @@ class BSD(Dataset):
         img_path, x = self.paths[index], self.x[index]
         class_name = img_path.split('/')[-4]
 
-        self_sup_args={'width_bounds_pct': ((0.03, 0.4), (0.03, 0.4)),
-                    'intensity_logistic_params': (1/12, 24),
-                    'num_patches': 2, #if single_patch else NUM_PATCHES.get(class_name),
+        self_sup_args={'width_bounds_pct': ((0.03, 0.4), (0.03, 0.4)),#WIDTH_BOUNDS_PCT.get(class_name),
+                    'intensity_logistic_params': (1/12, 24),#INTENSITY_LOGISTIC_PARAMS.get(class_name),
+                    'num_patches': 4, #if single_patch else NUM_PATCHES.get(class_name),
                     'min_object_pct': 0,
                     'min_overlap_pct': 0.25,
                     'gamma_params':(2, 0.05, 0.03), 'resize':True, 
@@ -123,8 +123,8 @@ class BSD(Dataset):
                     'same':False, 
                     'mode':cv2.NORMAL_CLONE,
                     'label_mode':'logistic-intensity',
-                    'skip_background': None,
-                    'resize_bounds': (.5, 2)
+                    'skip_background': None, #BACKGROUND.get(class_name),
+                    'resize_bounds':(.5, 2)
                     }
         # if class_name in TEXTURES:
         #     self_sup_args['resize_bounds'] = (.5, 2)
