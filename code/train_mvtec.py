@@ -17,8 +17,6 @@ def parser_args():
     parser.add_argument('--stage', type=int) # the maximum sequence length
     parser.add_argument('--data_path', type=str) # the maximum sequence length
     parser.add_argument('--image_root_path', type=str) # the maximum sequence length
-    # dataset path config
-    parser.add_argument('--dataset_path', type=str)
 
     return parser.parse_args()
 

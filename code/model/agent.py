@@ -69,15 +69,8 @@ class DeepSpeedAgent:
         checkpoint = OrderedDict()
         for k, v in self.ds_engine.module.named_parameters():
             if v.requires_grad:
-                try:
-                    pickle.dumps(v)
-                    checkpoint[k] = v
-                    print(k)
-                except TypeError:
-                    print(f"Skip {k} because it can't be pickled.")
-            # if v.requires_grad:
-            #     print(k)
-            #     checkpoint[k] = v
+                print(k)
+                checkpoint[k] = v
         torch.save(checkpoint, f'{path}/pytorch_model.pt')
         # save tokenizer
         self.model.llama_tokenizer.save_pretrained(path)
@@ -88,3 +81,11 @@ class DeepSpeedAgent:
     def load_stage_1_parameters(self, path):
         delta_ckpt = torch.load(path, map_location=torch.device('cpu'))
         self.model.load_state_dict(delta_ckpt, strict=False)
+
+            # if v.requires_grad:
+            #     try:
+            #         pickle.dumps(v)
+            #         checkpoint[k] = v
+            #         print(k)
+            #     except TypeError:
+            #         print(f"Skip {k} because it can't be pickled.")

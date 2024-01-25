@@ -73,7 +73,7 @@ deepspeed \
     --max_tgt_len 1024\
     --data_path ../pandagpt4_visual_instruction_data.json\
     --image_root_path $TMPDIR/images/images/\
-    --dataset_path $TMPDIR/Baselinedata/DeepPCB_mvt_structural\
+    --dataset_path $TMPDIR/DeepPCB_mvt_structural\
     --save_path  $TMPDIR/train_deeppcb/\
     --log_path $TMPDIR/train_deeppcb/log_rest/
 
@@ -92,7 +92,7 @@ deepspeed \
     --max_tgt_len 1024\
     --data_path ../pandagpt4_visual_instruction_data.json\
     --image_root_path $TMPDIR/images/images/\
-    --dataset_path $TMPDIR/Baselinedata/mini_pku_pcb_mvt_structural\
+    --dataset_path $TMPDIR/mini_pku_pcb_mvt_structural\
     --save_path  $TMPDIR/train_pkupcb/\
     --log_path $TMPDIR/train_pkupcb/log_rest/
 
