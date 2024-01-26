@@ -40,22 +40,6 @@ command_args = parser_args()
 
 
 describles = {}
-# describles['bottle'] = "This is a photo of a bottle for anomaly detection, which should be round, without any damage, flaw, defect, scratch, hole or broken part."
-# describles['cable'] = "This is a photo of three cables for anomaly detection, cables cannot be missed or swapped, which should be without any damage, flaw, defect, scratch, hole or broken part."
-# describles['capsule'] = "This is a photo of a capsule for anomaly detection, which should be black and orange, with print '500', without any damage, flaw, defect, scratch, hole or broken part."
-# describles['carpet'] = "This is a photo of carpet for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
-# describles['grid'] = "This is a photo of grid for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
-# describles['hazelnut'] = "This is a photo of a hazelnut for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
-# describles['leather'] = "This is a photo of leather for anomaly detection, which should be brown and without any damage, flaw, defect, scratch, hole or broken part."
-# describles['metal_nut'] = "This is a photo of a metal nut for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part, and shouldn't be fliped."
-# describles['pill'] = "This is a photo of a pill for anomaly detection, which should be white, with print 'FF' and red patterns, without any damage, flaw, defect, scratch, hole or broken part."
-# describles['screw'] = "This is a photo of a screw for anomaly detection, which tail should be sharp, and without any damage, flaw, defect, scratch, hole or broken part."
-# describles['tile'] = "This is a photo of tile for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
-# describles['toothbrush'] = "This is a photo of a toothbrush for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
-# describles['transistor'] = "This is a photo of a transistor for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
-# describles['wood'] = "This is a photo of wood for anomaly detection, which should be brown with patterns, without any damage, flaw, defect, scratch, hole or broken part."
-# describles['zipper'] = "This is a photo of a zipper for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
-# describles['aero-engine_blade'] = "This is a photo of aero engine blade for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
 describles['ball_screw'] = "This is a photo of ball screw for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
 
 FEW_SHOT = command_args.few_shot 
@@ -135,7 +119,7 @@ mask_transform = transforms.Compose([
 CLASS_NAMES = ['ball_screw']
 
 precision = []
-log_path = command_args.output_path + "/test_result.txt"
+log_path = command_args.output_path + "/test_bsd_result.txt"
 
 for c_name in CLASS_NAMES:
 
@@ -165,7 +149,7 @@ for c_name in CLASS_NAMES:
                 if is_normal:
                     img_mask = Image.fromarray(np.zeros((224, 224)), mode='L')
                 else:
-                    mask_path = file_path.replace('test', 'ground_truth')
+                    mask_path = file_path.replace('/test/', '/ground_truth/')
                     mask_path = mask_path.replace('.jpg', '_mask.png')
                     img_mask = Image.open(mask_path).convert('L')
 

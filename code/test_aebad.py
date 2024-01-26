@@ -40,7 +40,7 @@ command_args = parser_args()
 
 
 describles = {}
-describles['deep_pcb'] = "This is a photo of pcb for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
+describles['ball_screw'] = "This is a photo of ball screw for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
 
 FEW_SHOT = command_args.few_shot 
 
@@ -116,10 +116,10 @@ mask_transform = transforms.Compose([
                             ])
 
 # CLASS_NAMES = ['bottle', 'cable', 'capsule', 'carpet', 'grid','hazelnut', 'leather', 'metal_nut', 'pill', 'screw','tile', 'toothbrush', 'transistor', 'wood', 'zipper']
-CLASS_NAMES = ['deep_pcb']
+CLASS_NAMES = ['aero-engine_blade']
 
 precision = []
-log_path = command_args.output_path + "/test_deeppcb_result.txt"
+log_path = command_args.output_path + "/test_aebad_result.txt"
 
 for c_name in CLASS_NAMES:
 
@@ -139,7 +139,7 @@ for c_name in CLASS_NAMES:
     for root, dirs, files in os.walk(root_dir):
         for file in files:
             file_path = os.path.join(root, file)
-            if "test" in file_path and 'jpg' in file and c_name in file_path:
+            if "test" in file_path and 'png' in file and c_name in file_path:
                 if FEW_SHOT:
                     resp, anomaly_map = predict(describles[c_name] + ' ' + input, file_path, normal_img_paths, 512, 0.1, 1.0, [], [])
                 else:
@@ -150,7 +150,7 @@ for c_name in CLASS_NAMES:
                     img_mask = Image.fromarray(np.zeros((224, 224)), mode='L')
                 else:
                     mask_path = file_path.replace('/test/', '/ground_truth/')
-                    mask_path = mask_path.replace('.jpg', '_mask.png')
+                    mask_path = mask_path.replace('.png', '_mask.png')
                     img_mask = Image.open(mask_path).convert('L')
 
                 img_mask = mask_transform(img_mask)

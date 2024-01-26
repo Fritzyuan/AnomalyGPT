@@ -135,7 +135,7 @@ mask_transform = transforms.Compose([
 CLASS_NAMES = ['pku_pcb']
 
 precision = []
-log_path = command_args.output_path + "/test_result.txt"
+log_path = command_args.output_path + "/test_pkupcb_result.txt"
 
 for c_name in CLASS_NAMES:
 
@@ -165,7 +165,7 @@ for c_name in CLASS_NAMES:
                 if is_normal:
                     img_mask = Image.fromarray(np.zeros((224, 224)), mode='L')
                 else:
-                    mask_path = file_path.replace('test', 'ground_truth')
+                    mask_path = file_path.replace('/test/', '/ground_truth/')
                     mask_path = mask_path.replace('.jpg', '_mask.png')
                     img_mask = Image.open(mask_path).convert('L')
 
