@@ -119,7 +119,7 @@ mask_transform = transforms.Compose([
 CLASS_NAMES = ['ball_screw']
 
 precision = []
-log_path = command_args.output_path + "/test_bsd_result.txt"
+log_path = command_args.output_path + "/test_bsd_result_" + str(command_args.k_shot) + "_shot.txt"
 
 for c_name in CLASS_NAMES:
 

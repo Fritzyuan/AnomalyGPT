@@ -40,7 +40,7 @@ command_args = parser_args()
 
 
 describles = {}
-describles['ball_screw'] = "This is a photo of ball screw for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
+describles['aero-engine_blade'] = "This is a photo of aero engine blade for anomaly detection, which should be without any damage, flaw, defect, scratch, hole or broken part."
 
 FEW_SHOT = command_args.few_shot 
 
@@ -119,7 +119,7 @@ mask_transform = transforms.Compose([
 CLASS_NAMES = ['aero-engine_blade']
 
 precision = []
-log_path = command_args.output_path + "/test_aebad_result.txt"
+log_path = command_args.output_path + "/test_aebad_result_" + str(command_args.k_shot) + "_shot.txt"
 
 for c_name in CLASS_NAMES:
 
