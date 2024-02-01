@@ -126,9 +126,11 @@ for c_name in CLASS_NAMES:
     # normal_img_paths = ["../data/AeBAD_mvt_structural/"+c_name+"/train/good/"+str(command_args.round * 4).zfill(3)+".png", "../data/AeBAD_mvt_structural/"+c_name+"/train/good/"+str(command_args.round * 4 + 1).zfill(3)+".png",
     #                     "../data/AeBAD_mvt_structural/"+c_name+"/train/good/"+str(command_args.round * 4 + 2).zfill(3)+".png", "../data/AeBAD_mvt_structural/"+c_name+"/train/good/"+str(command_args.round * 4 + 3).zfill(3)+".png"]
 
-    dir_path = root_dir+"/"+c_name+"/train/good/"
-    all_img_names = os.listdir(dir_path)
-    normal_img_paths = [os.path.join(dir_path, img_name) for img_name in all_img_names]
+    dir_path = os.path.join(root_dir, c_name, "train", "good")
+    all_files = os.listdir(dir_path)
+    all_files.sort()  # 如果需要，可以对文件进行排序
+    start_index = command_args.round * 4
+    normal_img_paths = [os.path.join(dir_path, fname) for fname in all_files[start_index:start_index+4]]
     normal_img_paths = normal_img_paths[:command_args.k_shot]
     right = 0
     wrong = 0
@@ -139,7 +141,7 @@ for c_name in CLASS_NAMES:
     for root, dirs, files in os.walk(root_dir):
         for file in files:
             file_path = os.path.join(root, file)
-            if "test" in file_path and 'jpg' in file and c_name in file_path:
+            if "/test/" in file_path and 'jpg' in file and c_name in file_path:
                 if FEW_SHOT:
                     resp, anomaly_map = predict(describles[c_name] + ' ' + input, file_path, normal_img_paths, 512, 0.1, 1.0, [], [])
                 else:

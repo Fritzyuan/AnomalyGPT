@@ -126,9 +126,11 @@ for c_name in CLASS_NAMES:
     # normal_img_paths = ["../data/AeBAD_mvt_structural/"+c_name+"/train/good/"+str(command_args.round * 4).zfill(3)+".png", "../data/AeBAD_mvt_structural/"+c_name+"/train/good/"+str(command_args.round * 4 + 1).zfill(3)+".png",
     #                     "../data/AeBAD_mvt_structural/"+c_name+"/train/good/"+str(command_args.round * 4 + 2).zfill(3)+".png", "../data/AeBAD_mvt_structural/"+c_name+"/train/good/"+str(command_args.round * 4 + 3).zfill(3)+".png"]
 
-    dir_path = root_dir+"/"+c_name+"/train/good/"
-    all_img_names = os.listdir(dir_path)
-    normal_img_paths = [os.path.join(dir_path, img_name) for img_name in all_img_names]
+    dir_path = os.path.join(root_dir, c_name, "train", "good")
+    all_files = os.listdir(dir_path)
+    all_files.sort()  # 如果需要，可以对文件进行排序
+    start_index = command_args.round * 4
+    normal_img_paths = [os.path.join(dir_path, fname) for fname in all_files[start_index:start_index+4]]
     normal_img_paths = normal_img_paths[:command_args.k_shot]
     right = 0
     wrong = 0

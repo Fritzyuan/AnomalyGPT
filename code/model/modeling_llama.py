@@ -22,6 +22,7 @@ _CONFIG_FOR_DOC = "LlamaConfig"
 
 
 # Copied from transformers.models.bart.modeling_bart._make_causal_mask
+#创建一个因果掩码，这种掩码可以用于防止模型在生成序列时“看到”未来的信息
 def _make_causal_mask(
     input_ids_shape: torch.Size, dtype: torch.dtype, device: torch.device, past_key_values_length: int = 0
 ):
@@ -40,6 +41,7 @@ def _make_causal_mask(
 
 
 # Copied from transformers.models.bart.modeling_bart._expand_mask
+#扩展和转换注意力掩码，以便在计算自注意力时使用
 def _expand_mask(mask: torch.Tensor, dtype: torch.dtype, tgt_len: Optional[int] = None):
     """
     Expands attention_mask from `[bsz, seq_len]` to `[bsz, 1, tgt_seq_len, src_seq_len]`.
@@ -55,14 +57,16 @@ def _expand_mask(mask: torch.Tensor, dtype: torch.dtype, tgt_len: Optional[int] 
 
 
 class LlamaRMSNorm(nn.Module):
+    #调用父类的构造函数，然后创建一个形状为 hidden_size 的全一张量 self.weight，并将其注册为模块的参数。最后，将 eps 保存为 self.variance_epsilon
     def __init__(self, hidden_size, eps=1e-6):
         """
         LlamaRMSNorm is equivalent to T5LayerNorm
         """
         super().__init__()
         self.weight = nn.Parameter(torch.ones(hidden_size))
-        self.variance_epsilon = eps
-
+        self.variance_epsilon = eps #eps 是一个很小的数，用于防止除以零的错误
+        
+    #对隐藏状态进行 RMS 归一化，这是一种常用的归一化技术，可以提高模型的训练稳定性和性能
     def forward(self, hidden_states):
         variance = hidden_states.to(torch.float32).pow(2).mean(-1, keepdim=True)
         hidden_states = hidden_states * torch.rsqrt(variance + self.variance_epsilon)
