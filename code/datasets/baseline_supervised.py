@@ -544,7 +544,7 @@ class SupervisedDataset(Dataset):
         # elif 'road' in img_path:
         #     class_name = 'road'
         # get class names of baseline datasets 
-        if 'AeBAD_mvt_structural'  in img_path or 'BSData_mvt_structural' in img_path or 'DeepPCB_mvt_structural' in img_path or 'mini_pku_pcb_mvt_structural' in img_path:
+        if 'AeBAD_mvt_structural'  in img_path or 'BSData' in img_path or 'DeepPCB_mvt_structural' in img_path or 'mini_pku_pcb_mvt_structural' in img_path:
             class_name = img_path.split('/')[-4]
 
         centers = []
@@ -572,7 +572,7 @@ class SupervisedDataset(Dataset):
             if 'AeBAD_mvt_structural' in img_path:
                 mask_path = img_path.replace('/test/', '/ground_truth/')
                 mask_path = mask_path.replace('.png', '_mask.png')
-            elif 'BSData_mvt_structural' in img_path:
+            elif 'BSData' in img_path:
                 mask_path = img_path.replace('/test/', '/ground_truth/')
                 mask_path = mask_path.replace('.jpg', '_mask.png')
             elif 'DeepPCB_mvt_structural' in img_path:
@@ -718,7 +718,7 @@ class SupervisedDataset(Dataset):
 
 
         #Ball screw descriptions
-        if 'good' not in img_path and 'BSData_mvt_structural' in img_path:
+        if 'good' not in img_path and 'BSData' in img_path:
             anomaly_detail = img_path.split('/')[-2]
             if not Use_chinese:
                 conversation.append({"from":"human","value":random.choice(detail_questions)})
@@ -1145,7 +1145,7 @@ class SupervisedDataset(Dataset):
             masks.append(instance[3])
             # if 'mvtec_anomaly_detection' in instance[4] or 'visa' in instance[4] or 'mvtec_loco_anomaly_detection' in instance[4]:
             #     img_paths.append(instance[4])
-            if 'AeBAD_mvt_structural' in instance[4] or 'BSData_mvt_structural' in instance[4] or 'DeepPCB_mvt_structural' in instance[4] or 'mini_pku_pcb_mvt_structural' in instance[4]:
+            if 'AeBAD_mvt_structural' in instance[4] or 'BSData' in instance[4] or 'DeepPCB_mvt_structural' in instance[4] or 'mini_pku_pcb_mvt_structural' in instance[4]:
                 img_paths.append(instance[4])
 
 
