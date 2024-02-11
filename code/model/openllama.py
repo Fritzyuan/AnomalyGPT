@@ -177,7 +177,8 @@ class OpenLLAMAPEFTModel(nn.Module):
         print (f'Initializing visual encoder from {imagebind_ckpt_path} ...')
 
         self.visual_encoder, self.visual_hidden_size = imagebind_model.imagebind_huge(args)
-        imagebind_ckpt = torch.load(imagebind_ckpt_path, map_location=torch.device('cpu'))
+        imagebind_ckpt = torch.load(imagebind_ckpt_path, map_location=torch.device('cuda'))
+        # imagebind_ckpt = torch.load(imagebind_ckpt_path, map_location=torch.device('cpu'))
         self.visual_encoder.load_state_dict(imagebind_ckpt, strict=True)
 
         self.iter = 0
